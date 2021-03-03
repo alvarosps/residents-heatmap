@@ -1,15 +1,15 @@
+import { Switch, Route } from 'react-router-dom';
 import './App.css';
-import ResidenceComponent from './components/ResidenceComponent';
+import Header from './components/header/header.component';
+import HomePage from './pages/homepage/homepage.component';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        Residences Heatmap Project
-      </header>
-      <ResidenceComponent />
-    </div>
-  );
-}
+const App = () => (
+	<div className="App">
+		<Header />
+		<Switch>
+			<Route exact path='/' component={HomePage} />
+		</Switch>
+	</div>
+);
 
 export default App;
