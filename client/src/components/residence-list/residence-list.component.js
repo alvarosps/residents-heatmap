@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ResidenceDataService from '../../services/residences.service';
 import { Link } from 'react-router-dom';
 
-const ResidenceList = () => {
+const ResidenceList = ({history}) => {
     const [residences, setResidences] = useState([]);
     const [zeroResidences, setZeroResidences] = useState(false);
 
@@ -12,7 +12,6 @@ const ResidenceList = () => {
                 setResidences([]);
                 setZeroResidences(true);
             } else setResidences(response.data);
-            console.log('response in getResidences', response);
         }).catch((error) => {
             console.log('error getResidences', error);
         });
@@ -24,9 +23,12 @@ const ResidenceList = () => {
 
     const removeAllResidences = () => {
         ResidenceDataService.removeAll().then((response) => {
-            console.log('response from removeAll', response);
             refreshList();
         })
+    }
+
+    const goToAddResidence = () => {
+        history.push('/add-residence');
     }
     
     useEffect(() => {
@@ -36,7 +38,10 @@ const ResidenceList = () => {
     return (
         <div>
             <h4>Residences List</h4>
-
+            <button
+                class='btn btn-success'
+                onClick={goToAddResidence}
+            >Add new Residence</button>
             <div>
                 {
                     zeroResidences && <div>

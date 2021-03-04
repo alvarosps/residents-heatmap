@@ -10,7 +10,6 @@ const HeatmapPage = () => {
             if (response.status === 204) {
                 setResidences([]);
             } else setResidences(response.data);
-            console.log('response in getResidences', response);
         }).catch((error) => {
             console.log('error getResidences', error);
         });

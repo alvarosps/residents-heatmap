@@ -6,7 +6,6 @@ const ResidenceComponent = () => {
 
     useEffect(() => {
         ResidenceService.getResidences().then((response) => {
-            console.log('response', response);
             setResidences(response.data);
         })
     }, []);

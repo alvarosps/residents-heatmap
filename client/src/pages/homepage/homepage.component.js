@@ -3,9 +3,9 @@ import ResidenceList from '../../components/residence-list/residence-list.compon
 
 import { HomePageContainer } from './homepage.styles';
 
-const HomePage = () => (
+const HomePage = ({history}) => (
     <HomePageContainer>
-        <ResidenceList />
+        <ResidenceList history={history} />
     </HomePageContainer>
 );
 

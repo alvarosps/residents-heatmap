@@ -51,16 +51,13 @@ const validateResidentsNumber = (residentsNumber) => {
 
 const validateInput = (name, value) => {
     let isValid = false;
-    console.log('name', name);
-    console.log('value', value);
 
     if (name === 'cep') isValid = validateCEP(value);
     else if (name === 'houseNumber') isValid = validateHouseNumber(value);
     else if (name === 'latitude') isValid= validateLatitude(value);
     else if (name === 'longitude') isValid = validateLongitude(value);
     else if (name === 'residentsNumber') isValid = validateResidentsNumber(value);
-
-    console.log('isValid', isValid)
+    
     return isValid;
 }
 

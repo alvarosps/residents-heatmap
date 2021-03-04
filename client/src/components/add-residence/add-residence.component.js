@@ -48,7 +48,6 @@ const AddResidence = () => {
     }
 
     const handleSubmit = () => {
-        console.log('handleSubmit')
         const data = {
             cep: residence.cep,
             houseNumber: residence.houseNumber,
@@ -58,7 +57,6 @@ const AddResidence = () => {
         };
 
         ResidenceDataService.create(data).then((response) => {
-            console.log('response from add-residence', response.data);
             setResidence({
                 id: response.data.id,
                 cep: response.data.cep,
@@ -77,7 +75,6 @@ const AddResidence = () => {
     }
 
     const newResidence = () => {
-        console.log('newResidence');
         setResidence(initialResidenceState);
         setSubmitted(false);
     }

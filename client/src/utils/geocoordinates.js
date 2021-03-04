@@ -33,11 +33,6 @@ const getCenterGeolocation = (latLngInDegr) => {
     const hyp = Math.sqrt(avgX * avgX + avgY * avgY);
     lat = Math.atan2(avgZ, hyp);
 
-    console.log('return', {
-        lat: rad2degr(lat),
-        lng: rad2degr(lng)
-    })
-
     return {
         lat: rad2degr(lat),
         lng: rad2degr(lng)

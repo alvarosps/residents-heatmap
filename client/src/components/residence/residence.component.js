@@ -57,7 +57,6 @@ const Residence = (props) => {
 
     const updateResidence = () => {
         ResidenceDataService.update(currentResidence.id, currentResidence).then((response) => {
-            console.log('response on update residence', response);
             setMessage('The residence has been updated successfully!');
         }).catch((error) => {
             console.log('response error update', error);
@@ -66,7 +65,6 @@ const Residence = (props) => {
 
     const deleteResidence = () => {
         ResidenceDataService.remove(currentResidence.id).then((response) => {
-            console.log('response on delete residence', response);
             props.history.push('/residences');
         }).catch((error) => {
             console.log('error on delete residence', error);
