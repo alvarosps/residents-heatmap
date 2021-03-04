@@ -7,14 +7,14 @@ const Header = () => (
             Residences Heatmap
         </TitleContainer>
         <OptionsContainer>
-            <OptionLink to='/'>
-                LIST
+            <OptionLink to='/residences'>
+                List of Residences
             </OptionLink>
-            <OptionLink to='/'>
-                HEATMAP
+            <OptionLink to='/heatmap'>
+                HeatMap
             </OptionLink>
-            <OptionLink to='/'>
-                EDIT
+            <OptionLink to='/add-residence'>
+                Add new Residence
             </OptionLink>
         </OptionsContainer>
     </HeaderContainer>

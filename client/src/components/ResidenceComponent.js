@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ResidenceService from '../services/residences-service';
+import ResidenceService from '../services/residences.service';
 
 const ResidenceComponent = () => {
     const [residences, setResidences] = useState([]);

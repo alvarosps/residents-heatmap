@@ -1,45 +1,97 @@
 import React, { useEffect, useState } from 'react';
-import ResidenceService from '../../services/residences-service';
+import ResidenceDataService from '../../services/residences.service';
+import { Link } from 'react-router-dom';
 
 const ResidenceList = () => {
     const [residences, setResidences] = useState([]);
+    const [zeroResidences, setZeroResidences] = useState(false);
 
-    useEffect(() => {
-        ResidenceService.getResidences().then((response) => {
-            console.log('response', response);
-            setResidences(response.data);
+    const getResidences = () => {
+        ResidenceDataService.getAll().then((response) => {
+            if (response.status === 204) setZeroResidences(true);
+            else setResidences(response.data);
+            console.log('response in getResidences', response);
+        }).catch((error) => {
+            console.log('error getResidences', error);
+        });
+    }
+
+    const refreshList = () => {
+        getResidences();
+    }
+
+    const removeAllResidences = () => {
+        ResidenceDataService.removeAll().then((response) => {
+            console.log('response from removeAll', response);
+            refreshList();
         })
+    }
+    console.log(residences)
+    useEffect(() => {
+        getResidences();
     }, []);
-
+    // PASSAR PARA STYLED COMPONENT
     return (
         <div>
-            <h1 className="text-center">Residences List</h1>
-            <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <td>Residence Id</td>
-                        <td>Residence CEP</td>
-                        <td>Residence Number</td>
-                        <td>Residence Latitude</td>
-                        <td>Residence Longitude</td>
-                        <td>Residents Number</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        residences.map((residence) => (
-                            <tr key={residence.id}>
-                                <td>{residence.id}</td>
-                                <td>{residence.cep}</td>
-                                <td>{residence.houseNumber}</td>
-                                <td>{residence.latitude}</td>
-                                <td>{residence.longitude}</td>
-                                <td>{residence.residentsNumber}</td>
+            <h4>Residences List</h4>
+
+            <div>
+                {
+                    zeroResidences && <div>
+                        There isn't any residence saved, please <Link
+                                    to={"/add-residence"}
+                                    className="badge badge-secondary"
+                                >
+                                Add a Residence
+                            </Link>
+                    </div>
+                }
+                {residences && residences.length > 0 &&
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>CEP</th>
+                                <th>House Number</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Number of Residents</th>
+                                <th></th>
                             </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            {
+                                residences.map((residence, index) => (
+                                    <tr key={index}>
+                                        <td>{residence.id}</td>
+                                        <td>{residence.cep}</td>
+                                        <td>{residence.houseNumber}</td>
+                                        <td>{residence.latitude}</td>
+                                        <td>{residence.longitude}</td>
+                                        <td>{residence.residentsNumber}</td>
+                                        <td>
+                                        <Link
+                                            to={"/residences/" + residence.id}
+                                            className="badge badge-warning"
+                                            >
+                                            Edit
+                                        </Link>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+
+            <button
+                className={"m-3 btn btn-sm btn-danger" + zeroResidences ? " hidden": ""}
+                onClick={removeAllResidences}
+                disabled={zeroResidences}
+            >
+                Remove All
+            </button>
         </div>
     );
 }

@@ -27,13 +27,13 @@ public class Residence {
 	private String longitude;
 	
 	@Column(name = "residents_number")
-	private int residentsNumber;
+	private String residentsNumber;
 	
 	public Residence() {
 		
 	}
 	
-	public Residence(String cep, String houseNumber, String latitude, String longitude, int residentsNumber) {
+	public Residence(String cep, String houseNumber, String latitude, String longitude, String residentsNumber) {
 		super();
 		this.cep = cep;
 		this.houseNumber = houseNumber;
@@ -82,11 +82,11 @@ public class Residence {
 		this.longitude = longitude;
 	}
 	
-	public int getResidentsNumber() {
+	public String getResidentsNumber() {
 		return residentsNumber;
 	}
 	
-	public void setResidentsNumber(int residentsNumber) {
+	public void setResidentsNumber(String residentsNumber) {
 		this.residentsNumber = residentsNumber;
 	}
 }
