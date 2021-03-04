@@ -13,9 +13,6 @@ const Header = () => (
             <OptionLink to='/heatmap'>
                 HeatMap
             </OptionLink>
-            <OptionLink to='/add-residence'>
-                Add new Residence
-            </OptionLink>
         </OptionsContainer>
     </HeaderContainer>
 );
