@@ -1,11 +1,12 @@
 import React from 'react';
 import {
+    ErrorContainer,
     FormInputContainer,
     GroupContainer,
     LabelContainer
 } from './form-input.styles';
 
-const FormInput = ({ handleChange, label, ...otherProps }) => (
+const FormInput = ({ handleChange, label, errorMessage, ...otherProps }) => (
     <GroupContainer>
         <FormInputContainer onChange={handleChange} {...otherProps} />
         {label ? (
@@ -13,6 +14,9 @@ const FormInput = ({ handleChange, label, ...otherProps }) => (
                 {label}
             </LabelContainer>
         ) : null}
+        {
+            errorMessage !== '' && <ErrorContainer>{errorMessage}</ErrorContainer>
+        }
     </GroupContainer>
 );
 

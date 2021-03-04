@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 
 const subColor = 'grey';
 const mainColor = 'black';
+const errorColor = 'red';
 
 const shrinkLabelStyles = css`
     top: -14px;
@@ -49,4 +50,9 @@ export const LabelContainer = styled.label`
     &.shrink {
         ${shrinkLabelStyles}
     }
+`;
+
+export const ErrorContainer = styled.div`
+    color: ${errorColor};
+    font-size: 14px;
 `;

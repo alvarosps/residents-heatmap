@@ -24,7 +24,7 @@ const removeAll = () => {
   return http.delete(`/residences`);
 };
 
-export default {
+const crudFunctions = {
   getAll,
   get,
   create,
@@ -32,3 +32,5 @@ export default {
   remove,
   removeAll
 };
+
+export default crudFunctions;

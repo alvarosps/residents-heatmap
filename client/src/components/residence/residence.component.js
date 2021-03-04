@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ResidenceDataService from '../../services/residences.service';
 import { ResidenceContainer, TitleContainer } from './residence.styles';
 import FormInput from '../form-input/form-input.component';
+import validateInput from '../../utils/form-validation.utils';
 
 const Residence = (props) => {
     const initialResidenceState = {
@@ -15,13 +16,28 @@ const Residence = (props) => {
 
     const [currentResidence, setCurrentResidence] = useState(initialResidenceState);
     const [message, setMessage] = useState('');
+    const [inputErrors, setInputErrors] = useState({
+        cep: '',
+        houseNumber: '',
+        latitude: '',
+        longitude: '',
+        residentsNumber: ''
+    });
+    const [canSubmit, setCanSubmit] = useState(false);
+    
+    const errorMessages = {
+        cep: 'CEP provided is invalid, please use a valid CEP.',
+        houseNumber: 'The House Number provided is invalid, please use a valid House Number',
+        latitude: 'Latitude valid is invalid, please provid a valid Latitude',
+        longitude: 'Longitude valid is invalid, please provide a valid Longitude',
+        residentsNumber: 'The Residents Number is invalid, please provide a valid Residents Number'
+    };
 
     const getResidence = (id) => {
         ResidenceDataService.get(id).then((response) => {
             setCurrentResidence(response.data);
-            console.log('response from getResidence(id)', response);
         }).catch((error) => {
-            console.log('errro on getResidence(id)', error);
+            setCanSubmit(false);
         });
     }
 
@@ -31,6 +47,10 @@ const Residence = (props) => {
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
+
+        const isInputValid = validateInput(name, value);
+        if (!isInputValid) setInputErrors({ ...inputErrors, [name]: errorMessages[name]});
+        else setInputErrors({ ...inputErrors, [name]: ''});
 
         setCurrentResidence({ ...currentResidence, [name] : value});
     };
@@ -53,6 +73,16 @@ const Residence = (props) => {
         });
     }
 
+    useEffect(() => {
+        const checkIfInputsCanBeSubmitted = () => {
+            const zeroErrors = Object.keys(inputErrors).filter((key) => inputErrors[key] === '').length === 5;
+            const residenceDataOk = !Object.values(currentResidence).includes('');
+            return zeroErrors && residenceDataOk;
+        }
+
+        setCanSubmit(checkIfInputsCanBeSubmitted());
+    }, [inputErrors, currentResidence]);
+
     return (
         <div>
             {currentResidence && (
@@ -67,6 +97,7 @@ const Residence = (props) => {
                             value={currentResidence.cep}
                             onChange={handleInputChange}
                             label='CEP'
+                            errorMessage={inputErrors.cep}
                             required
                         />
                         <FormInput 
@@ -75,6 +106,7 @@ const Residence = (props) => {
                             value={currentResidence.houseNumber}
                             onChange={handleInputChange}
                             label='House Number'
+                            errorMessage={inputErrors.houseNumber}
                             required
                         />
                         <FormInput 
@@ -83,6 +115,7 @@ const Residence = (props) => {
                             value={currentResidence.latitude}
                             onChange={handleInputChange}
                             label='Latitude'
+                            errorMessage={inputErrors.latitude}
                             required
                         />
                         <FormInput 
@@ -91,6 +124,7 @@ const Residence = (props) => {
                             value={currentResidence.longitude}
                             onChange={handleInputChange}
                             label='Longitude'
+                            errorMessage={inputErrors.longitude}
                             required
                         />
                         <FormInput 
@@ -99,6 +133,7 @@ const Residence = (props) => {
                             value={currentResidence.residentsNumber}
                             onChange={handleInputChange}
                             label='Number of Residents'
+                            errorMessage={inputErrors.residentsNumber}
                             required
                         />
                     </form>
@@ -112,6 +147,7 @@ const Residence = (props) => {
                     <button
                         className='badge badge-success mr-2'
                         onClick={updateResidence}
+                        disabled={!canSubmit}
                     >
                         Update
                     </button>

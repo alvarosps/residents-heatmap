@@ -8,8 +8,10 @@ const ResidenceList = () => {
 
     const getResidences = () => {
         ResidenceDataService.getAll().then((response) => {
-            if (response.status === 204) setZeroResidences(true);
-            else setResidences(response.data);
+            if (response.status === 204) {
+                setResidences([]);
+                setZeroResidences(true);
+            } else setResidences(response.data);
             console.log('response in getResidences', response);
         }).catch((error) => {
             console.log('error getResidences', error);
@@ -26,7 +28,7 @@ const ResidenceList = () => {
             refreshList();
         })
     }
-    console.log(residences)
+    
     useEffect(() => {
         getResidences();
     }, []);
@@ -86,7 +88,7 @@ const ResidenceList = () => {
             </div>
 
             <button
-                className={"m-3 btn btn-sm btn-danger" + zeroResidences ? " hidden": ""}
+                className={"m-3 btn btn-sm btn-danger"}
                 onClick={removeAllResidences}
                 disabled={zeroResidences}
             >
