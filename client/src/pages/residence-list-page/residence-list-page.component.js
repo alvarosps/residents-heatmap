@@ -1,7 +1,7 @@
 import React from 'react';
 import ResidenceList from '../../components/residence-list/residence-list.component';
 
-import { HomePageContainer } from './homepage.styles';
+import { HomePageContainer } from './residence-list-page.styles';
 
 const HomePage = ({history}) => (
     <HomePageContainer>

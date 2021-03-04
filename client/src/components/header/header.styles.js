@@ -8,11 +8,16 @@ export const HeaderContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
+    background-color: #f1f1f1;
+    overflow: hidden;
+    padding: 0 10px;
 `;
 
 export const TitleContainer = styled.div`
     height: 100%;
-    padding: 25px;
+    padding: 15px;
+    font-size: 25px;
+    font-weight: bold;
 `;
 
 export const OptionsContainer = styled.div`
@@ -26,4 +31,8 @@ export const OptionsContainer = styled.div`
 export const OptionLink = styled(Link)`
     padding: 10px 15px;
     cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    font-size: 18px;
 `;

@@ -65,7 +65,7 @@ const HeatMap = ({ residencesList }) => {
     return (
         <div style={{height: '80vh', width: '100%'}}>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: 'AIzaSyA1coUCzk6ViSdhQ1jO2dZ-TfhLooool20' }}
+                bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY  }}
                 defaultCenter={centerCoordinates}
                 defaultZoom={defaultZoom}
                 heatmapLibrary={true}
