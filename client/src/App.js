@@ -5,6 +5,7 @@ import ResidenceListPage from './pages/residence-list-page/residence-list-page.c
 import AddResidence from './components/add-residence/add-residence.component';
 import Residence from './components/residence/residence.component';
 import HeatmapPage from './pages/heatmap-page/heatmap-page.component';
+import Footer from './components/footer/footer.component';
 
 const App = () => (
 	<div className="App">
@@ -15,6 +16,7 @@ const App = () => (
 			<Route exact path='/add-residence' component={AddResidence} />
 			<Route path='/residences/:id' component={Residence} />
 		</Switch>
+		<Footer />
 	</div>
 );
 

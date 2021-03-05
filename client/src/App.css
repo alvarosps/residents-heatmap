@@ -1,6 +1,12 @@
 body {
   font-family: 'Open Sans Condensed';
-  padding: 20px 60px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 a {

@@ -3,7 +3,7 @@ import { HeaderContainer, TitleContainer, OptionLink, OptionsContainer } from '.
 
 const Header = () => (
     <HeaderContainer>
-        <TitleContainer>
+        <TitleContainer to='/'>
             Residences Heatmap
         </TitleContainer>
         <OptionsContainer>

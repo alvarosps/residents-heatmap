@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ResidenceDataService from '../../services/residences.service';
 import { Link } from 'react-router-dom';
 
+import { TableContainer, AddButton, ListContainer } from './residence-list.styles';
+
 const ResidenceList = ({history}) => {
     const [residences, setResidences] = useState([]);
     const [zeroResidences, setZeroResidences] = useState(false);
@@ -34,27 +36,24 @@ const ResidenceList = ({history}) => {
     useEffect(() => {
         getResidences();
     }, []);
-    // PASSAR PARA STYLED COMPONENT
+
     return (
-        <div>
+        <ListContainer>
             <h4>Residences List</h4>
-            <button
-                class='btn btn-success'
+            {
+                zeroResidences && <div>
+                    There isn't any residence saved, please add a new residence.
+                </div>
+            }
+            <AddButton
+                className='btn btn-success'
                 onClick={goToAddResidence}
-            >Add new Residence</button>
+            >
+                Add new Residence
+            </AddButton>
             <div>
-                {
-                    zeroResidences && <div>
-                        There isn't any residence saved, please <Link
-                                    to={"/add-residence"}
-                                    className="badge badge-secondary"
-                                >
-                                Add a Residence
-                            </Link>
-                    </div>
-                }
                 {residences && residences.length > 0 &&
-                    <table>
+                    <TableContainer>
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -88,7 +87,7 @@ const ResidenceList = ({history}) => {
                                 ))
                             }
                         </tbody>
-                    </table>
+                    </TableContainer>
                 }
             </div>
 
@@ -99,7 +98,7 @@ const ResidenceList = ({history}) => {
             >
                 Remove All
             </button>
-        </div>
+        </ListContainer>
     );
 }
 

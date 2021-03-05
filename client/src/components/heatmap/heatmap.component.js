@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import GoogleMapReact from 'google-map-react';
 import getCenterGeolocation from '../../utils/geocoordinates';
+import { GoogleMapContainer } from './heatmap.styles';
 
 const HeatMap = ({ residencesList }) => {
-    const [centerCoordinates, setCenterCoordinates] = useState({
+    const defaultCenterCoordinates = {
         lat: -30.048991667296335,
         lng: -51.20086444004856
-    });
+    };
+    const [centerCoordinates, setCenterCoordinates] = useState(defaultCenterCoordinates);
     const defaultZoom = 15;
     const [heatmapData, setHeatmapData] = useState({
         positions: [],
@@ -63,15 +65,18 @@ const HeatMap = ({ residencesList }) => {
     }, [residencesList]);
 
     return (
-        <div style={{height: '80vh', width: '100%'}}>
+        <GoogleMapContainer>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY  }}
-                defaultCenter={centerCoordinates}
+                bootstrapURLKeys={{
+                    key: process.env.REACT_APP_GOOGLE_API_KEY,
+                    libraries: ['visualization']
+                }}
+                defaultCenter={defaultCenterCoordinates}
                 defaultZoom={defaultZoom}
-                heatmapLibrary={true}
                 heatmap={heatmapData}
+                center={centerCoordinates}
             />
-        </div>
+        </GoogleMapContainer>
     );
 };
 

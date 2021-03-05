@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import HeatMap from '../../components/heatmap/heatmap.component';
 import ResidenceDataService from '../../services/residences.service';
+import { HeatmapContainer } from './heatmap-page.styles';
 
 const HeatmapPage = () => {  
     const [residences, setResidences] = useState([]);
@@ -20,9 +21,9 @@ const HeatmapPage = () => {
     }, []);
     
      return (
-        <div>
+        <HeatmapContainer>
             <HeatMap residencesList={residences} />
-        </div>
+        </HeatmapContainer>
     );
 }
 

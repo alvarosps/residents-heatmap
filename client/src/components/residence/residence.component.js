@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ResidenceDataService from '../../services/residences.service';
-import { ResidenceContainer, TitleContainer } from './residence.styles';
+import { ResidenceContainer, TitleContainer, ButtonContainer } from './residence.styles';
 import FormInput from '../form-input/form-input.component';
 import validateInput from '../../utils/form-validation.utils';
 
@@ -136,19 +136,19 @@ const Residence = (props) => {
                         />
                     </form>
 
-                    <button
+                    <ButtonContainer
                         className='badge badge-danger mr-2'
                         onClick={deleteResidence}
                     >
                         Delete
-                    </button>
-                    <button
+                    </ButtonContainer>
+                    <ButtonContainer
                         className='badge badge-success mr-2'
                         onClick={updateResidence}
                         disabled={!canSubmit}
                     >
                         Update
-                    </button>
+                    </ButtonContainer>
                     <p>{message}</p>
                 </ResidenceContainer>
             )}
