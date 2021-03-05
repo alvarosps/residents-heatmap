@@ -22,7 +22,7 @@ After cloning the project, you'll need a few setups to have it running on your m
 
 #### Using Terminal for setup
 - Go to the project folder in the terminal
-##### `cd *<your-local-project-path>*/residents-heatmap/server`
+##### `cd {your-local-project-path}/residents-heatmap/server`
 - Install maven dependencies
 ##### `mvn clean install`
 - If all is good so far, then run the backend server:
