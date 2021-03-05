@@ -40,8 +40,8 @@ After cloning the project, you'll need a few setups to have it running on your m
 - First, you'll have to create a *.env* file on the client folder {your-local-project-path}/residents-heatmap/client
 - You'll need a GOOGLE_API_KEY to have the map working in the project
 - On the .env file, add this 2 lines:
-PORT=8081
-REACT_APP_GOOGLE_API_KEY=**YOUR GOOGLE_API_KEY**
+PORT=8081 
+REACT_APP_GOOGLE_API_KEY=**YOUR GOOGLE_API_KEY** 
 
 - Then, on your terminal, go to the clients folder
 ##### `cd {your-local-project-path}/residents-heatmap/client`
